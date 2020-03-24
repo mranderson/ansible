@@ -1,0 +1,22 @@
+---
+# COND PLaybook
+
+- name: cond PB
+  hosts: all
+  become: yes
+  tasks:
+    - name: install package
+      yum:
+        name: linuxacademy_backup_package
+        state: present
+      ignore_errors: yes
+    - name: check for tar
+      command: ls /root/archive.tar
+      register: check
+      ignore_errors: yes
+    - name: create if does not exist
+      file:
+        dest: /root/archive.tar
+        state: touch
+      when: check is failed
+                                                                                            

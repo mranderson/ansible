@@ -1,0 +1,15 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+          - name: use parted to make partitions
+            parted:
+                    device: "{{ item }}"
+                    number: 1
+                    state: present
+                    part_end: 1GiB
+                    label: msdos
+                    flags: [lvm]
+            loop:
+                    - /dev/sda
+                    - /dev/sdc

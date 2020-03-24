@@ -1,0 +1,14 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: start and enable the httpd service
+      systemd:
+        name: httpd
+        state: restarted
+        enabled: yes
+    - name: start and enable the firewalld service
+      systemd:
+        name: firewalld
+        state: restarted
+        enabled: yes

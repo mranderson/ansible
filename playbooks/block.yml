@@ -1,0 +1,14 @@
+---
+- hosts: labservers
+  tasks:
+    - name: copy remote files
+      block:
+        - fetch:
+            src: /tmp/blockfile
+            dest: /tmp
+      rescue:
+        - debug: 
+            msg: "The file doesn't exixt on {{ ansible_hostname }}"
+      always:
+        - debug:
+            msg: "Playbook fin"

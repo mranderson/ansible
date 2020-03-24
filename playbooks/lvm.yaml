@@ -1,0 +1,15 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: create volume group
+      lvg:
+        pvs: /dev/sda1,/dev/sdc1
+        vg: vg_keith
+        state: present
+    - name: create logical volume
+      lvol: 
+        vg: vg_keith
+        lv: lv_keith
+        size: 512m
+        state: present

@@ -1,0 +1,19 @@
+---
+- hosts: server1
+  tasks:
+    - name: create a file
+      file:
+        path: /tmp/testfile
+        state: touch
+      register: var
+    - name: display debug msg
+      debug: msg="register output is {{ var }}"
+    - name: edit file
+      lineinfile:
+        path: /tmp/testfile
+        line: "the UID is {{ var.uid }} and the gid is {{ var.gid }}"
+    - name: cat file
+      command: cat /tmp/testfile
+      register: output
+    - name: outputs
+      debug: msg="the output is {{ output }}"
