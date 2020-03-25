@@ -1,0 +1,7 @@
+---
+- hosts: server1
+  tasks:
+    - name: push out info template
+      template:
+        src: /home/keith/ansible/templates/info.j2
+        dest: /tmp/info.txt

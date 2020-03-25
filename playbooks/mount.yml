@@ -1,0 +1,10 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: mount the fs
+      mount:
+        path: /mnt/test/
+        src: /dev/mapper/vg_keith-lv_keith
+        fstype: ext4
+        state: mounted

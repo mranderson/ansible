@@ -1,0 +1,14 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: install at
+      yum:
+        name: at
+        state: latest
+    - name: copy httpd log
+      at:
+        command: cp /var/log/httpd/error_log /home/keith
+        count: 2
+        units: hours
+        state: absent

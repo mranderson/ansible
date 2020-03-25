@@ -1,0 +1,8 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: create ext4 filesystem on logical volume
+      filesystem:
+        fstype: ext4
+        dev: /dev/mapper/vg_keith-lv_keith

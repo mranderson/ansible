@@ -1,0 +1,26 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: archive multiple files
+      archive:
+        path:
+          - /home/keith/archive/testFile2
+          - /home/keith/archive/testFile4
+          - /home/keith/archive/testFile6
+        format: gz
+        dest: /home/keith/unarchive/multiFile.tgz
+    - name: archive with wildcard
+      archive:
+        path: /home/keith/archive/testFile*
+        exclude_path:
+          - /home/keith/archive/testFile2
+          - /home/keith/archive/testFile4
+        format: gz
+        dest: /home/keith/unarchive/globExclude.tgz
+    - name: archive a directory
+      archive:
+        path: /home/keith/archive
+        format: gz
+        dest: /home/keith/unarchive/dir.tgz
+    

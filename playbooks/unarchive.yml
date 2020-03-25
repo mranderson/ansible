@@ -1,0 +1,24 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: unpack multi
+      unarchive:
+        src: /home/keith/unarchive/multiFile.tgz
+        dest: /home/keith/unarchive/multi/
+        remote_src: yes
+    - name: unpack glob
+      unarchive:
+        src: /home/keith/unarchive/globExclude.tgz
+        dest: /home/keith/unarchive/glob/
+        remote_src: yes
+    - name: unpack dir.tgz
+      unarchive:
+        src: /home/keith/unarchive/dir1.tgz
+        dest: /home/keith/unarchive/dir/
+        remote_src: yes
+    - name: unpack playbooks.tgz
+      unarchive:
+        src: /home/keith/ansible/pleaybooks.tgz
+        dest: /home/keith/unarchive
+        remote_src: no  

@@ -1,0 +1,16 @@
+---
+- hosts: server1
+  tasks:
+    - name: touch a file
+      file:
+        path: /tmp/testFile1
+        state: touch
+    - name: add a line with copy
+      copy:
+        content: added by the copy module
+        dest: /tmp/testFile2
+    - name: add line with lineinfle
+      lineinfile:
+        path: /tmp/testFile3
+        line: added by lineinfile module
+        create: yes
