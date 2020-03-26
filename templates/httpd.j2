@@ -1,0 +1,21 @@
+#main apache config file
+#
+# {{ ansible_managed }}
+
+ServerRoot "/etc/httpd"
+
+Listen {{ http_port }}
+
+Include conf.modules.d/*.conf
+
+User apache
+Group apache
+
+ServerAdmin {{ admin }}@{{ ansible_hostname }}
+
+<Directory />
+  Allow Override none
+  require all denied
+</Directory>
+
+DocumentRoot "{{ content_dir }}"

@@ -1,0 +1,9 @@
+Welcome to {{ ansible_hosname }}!
+
+- IPV4 is {{ansible_default_ipv4['address'] }}
+
+- Memory is {{ ansible_memory_mb['real']['used'] }} out of {{ ansible_memory_mb['real']['total'] }}mb
+
+-The {{ ansible_devices| first }} block device has the following partitions:
+  -{{ ansible_devices['sda1']['partitions']|join('\n -') }}
+

@@ -1,0 +1,12 @@
+---
+- hosts: server1
+  become: yes
+  vars_files: 
+    - /home/keith/ansible/vars/users.yml
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item }}"
+        state: absent
+        remove: yes
+      loop: "{{ [students,faculty]|flatten(1) }}"

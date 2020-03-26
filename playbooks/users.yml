@@ -1,0 +1,40 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+    - name: create groups
+      group:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - students
+        - bayside
+    - name: create zach user
+      user:
+        name: zach
+        comment: zach morris
+        shell: /bin/sh
+        groups: students,bayside
+        append: yes
+        state: absent
+        remove: yes
+    - name: create kelly
+      user:
+        name: kelly
+        comment: kelly
+        shell: /bin/sh
+        uid: 1050
+        groups: students,bayside
+        append: yes
+        state: absent
+        remove: yes
+    - name: create slater
+      user:
+        name: slater
+        comment: slater
+        shell: /bin/sh
+        uid: 1051
+        groups: students,bayside
+        append: yes
+        state: absent
+        remove: yes
